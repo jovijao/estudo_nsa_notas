@@ -20,13 +20,17 @@
                 RM 000000 <br>
                 RM 000000 <br>
                 RM 000000 <br>
+
                 <br>
-                Habilitação:<br>
-                <select style="width: 100%;" id="selecaoCurso" onselect="selecionarCurso()">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
+
+                Habilitação: <br>
+                <select style="width: 100%;" id="selecaoCurso">
+                    <option value="0">Desenvolvimento de Sistemas</option>
+                    <option value="1">Administração</option>
                 </select> <br>
+
                 <br>
+
                 RM 000000 <br>
                 RM 000000 <br>
                 RM 000000 <br>
@@ -37,7 +41,7 @@
 
         <div class="main">
 
-            <table style="border: 1px solid black; margin: auto;">
+            <table class="boletim">
                 <thead>
                     <th>Componente Curricular</th>
                     <th>1°Sin.</th>
@@ -72,6 +76,7 @@
         import Aluno from "./models/Aluno.js"
         import Falta from "./models/Falta.js"
 
+        const dataBimestre1Inicio = new Date(2024, 2, 1)
         const dataBimestre2Inicio = new Date(2024, 4, 30)
         const dataHoje = Date.now()
 
@@ -90,13 +95,15 @@
 
         function carregarBoletim(aluno, curso) {
             const materias = consultas.materiasCurso(curso)
-            console.log(materias)
+
+            $("boletins").innerHTML = ""
 
             materias.forEach(materia => {
                 // Calculando as notas do primeiro e segundo bimestre
                 const notas = consultas.notasAlunoMateria(aluno.id, materia.id)
-                const notasBim1 = notas.filter((nota) => { if (nota.data < dataBimestre2Inicio) return nota })
-                const notasBim2 = notas.filter((nota) => { if (nota.data >= dataBimestre2Inicio) return nota })
+
+                let notasBim1 = notas.filter((nota) => { if (nota.data < dataBimestre2Inicio) return nota })
+                let notasBim2 = notas.filter((nota) => { if (nota.data >= dataBimestre2Inicio) return nota })
 
                 const mediaBim1 = calculoNotas(notasBim1)
                 const mediaBim2 = calculoNotas(notasBim2)
@@ -163,11 +170,13 @@
         }
 
         function selecionarCurso() {
-            alert("curso")
+            const curso = parseInt($("selecaoCurso").value)
+            carregarBoletim(aluno, curso)
         }
 
-
-    </script>
-
+        $("selecaoCurso").addEventListener(
+            "input", selecionarCurso)
+   
+   </script>
 </body>
 </html>

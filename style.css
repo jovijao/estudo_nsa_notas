@@ -11,10 +11,11 @@
 .container {
     display: grid;
     grid-template-areas:
-      'header header header header header'
-      'navbar navbar navbar navbar navbar'
-      'menu main main main main'
-      'menu footer footer footer footer';
+      'header header header header'
+      'navbar navbar navbar navbar'
+      'menu main main main'
+      'menu main main main'
+      'footer footer footer footer';
     
     background-color: #2196F3;
         
@@ -23,31 +24,19 @@
     gap: 10px;
     
     height: 100%;
-    width: 80%;
+    width: 75%;
   }
 
 .container > div {
     background-color: rgba(255, 255, 255, 0.8);
-  }
+    padding: 1em 0;
+}
 
-.profile-bar {
-    grid-area: menu;
+.header { 
+    grid-area: header;
+
     width: 100%;
-
-    text-align: center;
-    padding: 2em 0;
-}
-
-.profile-picture {
-    border-radius: 10px;
-    width: 6.4em;
-}
-
-.profile-info {
-    text-align: left;
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
+    height: 100px;
 }
 
 .navbar {
@@ -68,23 +57,49 @@
     float: left;   
 } 
 
+
 .main {
     grid-area: main;
 
-    min-height: 100px;
     width: 100%;
 }
 
-.header { 
-    grid-area: header;
 
-    width: 100%;
-    height: 100px;
+.profile-bar {
+    grid-area: menu;
+    width: 20em;
+
+    text-align: center;
+    float: left;
 }
+
+.profile-picture {
+    border-radius: 10px;
+    width: 6.4em;
+}
+
+.profile-info {
+    text-align: left;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
 
 .footer {
     grid-area: footer;
 
     width: 100%;
     height: 50px;
+}
+
+.boletim { 
+    width: fit-content;
+    min-width: 80%;
+
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    border: #2196F3 solid 1px;
 }

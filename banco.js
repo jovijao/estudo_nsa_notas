@@ -20,30 +20,30 @@ export let banco = {
         new Materia(6, 1, "z"),
     ],
     "boletins": [
-        new Boletim(0, 0, 0, new Date(2024, 2, 1), 1),
-        new Boletim(1, 0, 0, new Date(2024, 2, 1), 1),
+        new Boletim(0, 0, 0, new Date(2024, 2, 30), 1),
+        new Boletim(1, 0, 0, new Date(2024, 2, 30), 1),
 
-        new Boletim(0, 0, 1, new Date(2024, 2, 1), 5),
-        new Boletim(1, 0, 1, new Date(2024, 2, 1), 5),
+        new Boletim(0, 0, 1, new Date(2024, 2, 30), 5),
+        new Boletim(1, 0, 1, new Date(2024, 2, 30), 5),
 
-        new Boletim(2, 0, 2, new Date(2024, 2, 1), 10),
-        new Boletim(3, 0, 2, new Date(2024, 2, 1), 10),
+        new Boletim(2, 0, 2, new Date(2024, 2, 30), 10),
+        new Boletim(3, 0, 2, new Date(2024, 2, 30), 10),
 
-        new Boletim(4, 0, 3, new Date(2024, 2, 1), 8),
-        new Boletim(5, 0, 3, new Date(2024, 2, 1), 8),
+        new Boletim(4, 0, 3, new Date(2024, 2, 30), 8),
+        new Boletim(5, 0, 3, new Date(2024, 2, 30), 8),
 
         
-        new Boletim(6, 0, 0, new Date(2024, 5, 1), 1),
-        new Boletim(7, 0, 0, new Date(2024, 5, 1), 10),
+        new Boletim(6, 0, 0, new Date(2024, 5, 30), 1),
+        new Boletim(7, 0, 0, new Date(2024, 5, 30), 10),
+    
+        new Boletim(8, 0, 1, new Date(2024, 5, 30), 10),
+        new Boletim(9, 0, 1, new Date(2024, 5, 30), 10),
         
-        new Boletim(8, 0, 1, new Date(2024, 5, 1), 10),
-        new Boletim(9, 0, 1, new Date(2024, 5, 1), 10),
+        new Boletim(10, 0, 2, new Date(2024, 5, 30), 5),
+        new Boletim(11, 0, 2, new Date(2024, 5, 30), 1),
         
-        new Boletim(10, 0, 2, new Date(2024, 5, 1), 5),
-        new Boletim(11, 0, 2, new Date(2024, 5, 1), 1),
-        
-        new Boletim(10, 0, 3, new Date(2024, 5, 1), 8),
-        new Boletim(11, 0, 3, new Date(2024, 5, 1), 8)
+        new Boletim(10, 0, 3, new Date(2024, 5, 30), 8),
+        new Boletim(11, 0, 3, new Date(2024, 5, 30), 8)
     ],
     "matriculas": [
         new Matricula(0, 1, 1),
