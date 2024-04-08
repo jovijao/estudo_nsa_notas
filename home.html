@@ -13,21 +13,6 @@
             
         </div>
 
-        <div class="navbar">
-            <ul>
-                <li>
-                    <select>
-                        <option value="0">--------</option>
-                    </select>
-                </li>
-                <li>
-                    <select>
-                        <option value="0">--------</option>
-                    </select>
-                </li>
-            </ul>
-        </div>
-
         <div class="profile-bar">
             Identificação do aluno <br>
             <img src="images/profile-picture.jpg" class="profile-picture"> <br>
@@ -37,9 +22,9 @@
                 RM 000000 <br>
                 <br>
                 Habilitação:<br>
-                <select style="width: 100%;" id="selecaoCurso">
-                    <option value="0">--------</option>
-                    <option value="0">--------</option>
+                <select style="width: 100%;" id="selecaoCurso" onselect="selecionarCurso()">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
                 </select> <br>
                 <br>
                 RM 000000 <br>
@@ -80,12 +65,12 @@
     </div>
     
     <script type="module">
-        import Curso from "./models/Curso.js.js"
-        import Matricula from "./models/Matricula.js.js"
-        import Materia from "./models/Materia.js.js"
+        import Curso from "./models/Curso.js"
+        import Matricula from "./models/Matricula.js"
+        import Materia from "./models/Materia.js"
         import Boletim from "./models/Boletim.js"
-        import Aluno from "./models/Aluno.js.js"
-        import Falta from "./models/Falta.js.js"
+        import Aluno from "./models/Aluno.js"
+        import Falta from "./models/Falta.js"
 
         const dataBimestre2Inicio = new Date(2024, 4, 30)
         const dataHoje = Date.now()
@@ -175,6 +160,10 @@
                     <td>${situacao}</td>
                 </tr>
             `
+        }
+
+        function selecionarCurso() {
+            alert("curso")
         }
 
 

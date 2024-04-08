@@ -53,8 +53,8 @@
 .navbar {
     text-align: center;
     margin: auto;
-    width: fit-content;
-    list-style: none;
+    width: 100%;
+    min-height: 10px;
 }
 
 .navbar > ul {

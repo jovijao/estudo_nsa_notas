@@ -1,9 +1,9 @@
-import Curso from "./models/Curso.js.js"
-import Matricula from "./models/Matricula.js.js"
-import Materia from "./models/Materia.js.js"
+import Curso from "./models/Curso.js"
+import Matricula from "./models/Matricula.js"
+import Materia from "./models/Materia.js"
 import Boletim from "./models/Boletim.js"
-import Aluno from "./models/Aluno.js.js"
-import Falta from "./models/Falta.js.js"
+import Aluno from "./models/Aluno.js"
+import Falta from "./models/Falta.js"
 
 export let banco = {
     "alunos": [
