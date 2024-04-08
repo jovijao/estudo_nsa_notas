@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            
+        </div>
+
+        <div class="navbar">
+            <ul>
+                <li>
+                    <select>
+                        <option value="0">--------</option>
+                    </select>
+                </li>
+                <li>
+                    <select>
+                        <option value="0">--------</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+
+        <div class="profile-bar">
+            Identificação do aluno <br>
+            <img src="images/profile-picture.jpg" class="profile-picture"> <br>
+            <div class="profile-info">
+                RM 000000 <br>
+                RM 000000 <br>
+                RM 000000 <br>
+                <br>
+                Habilitação:<br>
+                <select style="width: 100%;" id="selecaoCurso">
+                    <option value="0">--------</option>
+                    <option value="0">--------</option>
+                </select> <br>
+                <br>
+                RM 000000 <br>
+                RM 000000 <br>
+                RM 000000 <br>
+                RM 000000 <br>
+                RM 000000 <br>
+            </div>
+        </div>
+
+        <div class="main">
+
+            <table style="border: 1px solid black; margin: auto;">
+                <thead>
+                    <th>Componente Curricular</th>
+                    <th>1°Sin.</th>
+                    <th>2°Sin.</th>
+                    <th>Final</th>
+
+                    <th>Análise do Conselho</th>
+                    <th>Recon.</th>
+
+                    <th>Aulas</th>
+                    <th>Faltas</th>
+                    <th>Freq %</th>
+
+                    <th>Situação</th>
+                </thead>
+                <tbody id="boletins">
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+
+        </div>
+    </div>
+    
+    <script type="module">
+        import Curso from "./models/curso.js"
+        import Matricula from "./models/matricula.js"
+        import Materia from "./models/materia.js"
+        import Boletim from "./models/boletim.js"
+        import Aluno from "./models/aluno.js"
+
+        const dataBimestre2Inicio = new Date(2024, 4, 30)
+        const dataHoje = Date.now()
+
+        //Não tem SQL nesse projeto, então será usado um módulo mesmo
+        import { banco, consultas } from "./banco.js"
+
+        //Objeto do aluno logado atualmente
+        const aluno = consultas.aluno(0)
+
+        //Carregando boletim do aluno
+        carregarBoletim(aluno, 0)
+
+        function $(elementId) {
+            return document.getElementById(elementId)
+        }
+
+        function carregarBoletim(aluno, curso) {
+            const materias = consultas.materiasCurso(curso)
+            console.log(materias)
+
+            materias.forEach(materia => {
+                // Calculando as notas do primeiro e segundo bimestre
+                const notas = consultas.notasAlunoMateria(aluno.id, materia.id)
+                const notasBim1 = notas.filter((nota) => { if (nota.data < dataBimestre2Inicio) return nota })
+                const notasBim2 = notas.filter((nota) => { if (nota.data >= dataBimestre2Inicio) return nota })
+
+                const mediaBim1 = calculoNotas(notasBim1)
+                const mediaBim2 = calculoNotas(notasBim2)
+
+
+                // Fingindo que tenho acesso a quantidade de aulas que teve no semestre
+                const faltasQtde = consultas.faltasAluno(aluno.id, materia.id).length
+                const aulasQtde = 10
+                const frequenc = 100 - (faltasQtde / aulasQtde) * 100
+                console.log(frequenc)
+
+
+                inserirBoletim(
+                    materia.nome,
+
+                    mediaBim1,
+                    mediaBim2,
+                    (mediaBim1 + mediaBim2) / 2,
+                    
+                    "-",
+                    "-",
+
+                    aulasQtde,
+                    faltasQtde,
+                    frequenc
+                )
+            });
+
+        }
+
+        function calculoNotas(notas) {
+            let notasSum = 0//notas.reduce((nota) => { return nota.nota })
+            notas.forEach(nota => { notasSum += nota.nota })
+            const notasMedia = notasSum / notas.length
+
+            return notasMedia
+        }
+
+        // Colocar mil parametros em uma função não é uma boa ideia, mas está funcional
+        function inserirBoletim(nomeMateria, 
+                notaB1 = "-", notaB2 = "-", notaFinal = "-",
+                analiseConselho = "-", recon = "-",
+                aulasQtde = "-", faltasQtde = "-", frequencia = "-",
+                situacao = "-") {
+     
+
+            $("boletins").innerHTML += `
+                <tr>
+                    <td>${nomeMateria.toUpperCase()}</td>
+                    <td>${notaB1}</td>
+                    <td>${notaB2}</td>
+                    <td>${notaFinal}</td>
+                    
+                    <td>${analiseConselho}</td>
+                    <td>${recon}</td>
+
+                    <td>${aulasQtde}</td>
+                    <td>${faltasQtde}</td>
+                    <td>${frequencia}%</td>
+
+                    <td>${situacao}</td>
+                </tr>
+            `
+        }
+
+
+    </script>
+
+</body>
+</html>
